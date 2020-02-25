@@ -16,6 +16,7 @@ class BST {
     BST(){
         root = null;
     }
+    
     //QUESTION 1
     //RECURSIVELY
     void insertRec(int val){
@@ -314,6 +315,7 @@ class BST {
         return a;
     }
 
+    //Extra
     BST populateBST(int[] nums){
         BST tree = new BST();
         for(int i = 0; i < nums.length; i++){
@@ -321,7 +323,6 @@ class BST {
         }
         return tree;
     }
-
     public static void inOrder(Node root, List<Integer> list){
         if(root != null) {
             inOrder(root.left, list);
@@ -361,6 +362,7 @@ class BST {
     }
 
     public static void main(String[] args){
+        //Recursive Testing
         BST tree = new BST();
         tree.insertRec(13);
         tree.insertRec(6);
@@ -378,12 +380,15 @@ class BST {
         System.out.println(tree.print());
         tree.deleteRec(6);
         System.out.println(tree.print());
-        System.out.println(tree.root.left.right.right.right.val);
-        System.out.println("Prev: " + tree.findPrevRec(tree.root.left.right.right.right).val);
-        System.out.println("Next: " + tree.findNextRec(tree.root.left.right.right.right).val);
-        System.out.println(tree.root.right.right.left.val);
-        System.out.println("Prev: " + tree.findPrevRec(tree.root.right.right.left).val);
-        System.out.println("Next: " + tree.findNextRec(tree.root.right.right.left).val);
+        Node n1 = tree.root.left.right.right.right; //12
+        System.out.println("Val: " + n1.val);
+        System.out.println("Prev: " + tree.findPrevRec(n1).val);
+        System.out.println("Next: " + tree.findNextRec(n1).val);
+        Node n2 = tree.root.right.right.left; //19
+        System.out.println("Val: " + n2.val);
+        System.out.println("Prev: " + tree.findPrevRec(n2).val);
+        System.out.println("Next: " + tree.findNextRec(n2).val);
+        //Iterative Testing
         BST tree2 = new BST();
         tree2.insertIter(13);
         tree2.insertIter(6);
@@ -401,12 +406,14 @@ class BST {
         System.out.println(tree2.print());
         tree2.deleteIter(6);
         System.out.println(tree2.print());
-        System.out.println(tree.root.left.right.right.right.val);
-        System.out.println("Prev: " + tree2.findPrevIter(tree.root.left.right.right.right).val);
-        System.out.println("Next: " + tree2.findNextIter(tree.root.left.right.right.right).val);
-        System.out.println(tree2.root.right.right.left.val);
-        System.out.println("Prev: " + tree2.findPrevIter(tree2.root.right.right.left).val);
-        System.out.println("Next: " + tree2.findNextIter(tree2.root.right.right.left).val);
+        Node n3 = tree2.root.left.right.right.right; //12
+        System.out.println("Val: " + n3.val);
+        System.out.println("Prev: " + tree2.findPrevIter(n3).val);
+        System.out.println("Next: " + tree2.findNextIter(n3).val);
+        Node n4 = tree2.root.right.right.left; //19
+        System.out.println("Val: " + n4.val);
+        System.out.println("Prev: " + tree2.findPrevIter(n4).val);
+        System.out.println("Next: " + tree2.findNextIter(n4).val);
 
     }
 }
