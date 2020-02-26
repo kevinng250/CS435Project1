@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.util.*;
 
 class BST {
@@ -16,7 +15,7 @@ class BST {
     BST(){
         root = null;
     }
-    
+
     //QUESTION 1
     //RECURSIVELY
     void insertRec(int val){
@@ -47,9 +46,11 @@ class BST {
             return null;
         }
         if(root.val == val){
+            //First Case
             if(root.left == null && root.right == null){
                 root = null;
             }
+            //Second Case
             else if(root.left == null){
                 root.right.parent = root.parent;
                 return root.right;
@@ -58,6 +59,7 @@ class BST {
                 root.left.parent = root.parent;
                 return root.left;
             }
+            //Third Case
             else
             {
                 Node n = findNextRec(root);
@@ -89,6 +91,7 @@ class BST {
         }
     }
     public static Node findNextRecHelper(Node node, int val){
+        //Continue Traversing until one of the parents is greater than the val
         if(node != null && node.val > val){
             return node;
         }
@@ -99,6 +102,7 @@ class BST {
     }
     public static Node findPrevRec(Node node){
         if(node.left == null){
+            //Check Parents
             Node n =  findPrevRecHelper(node, node.val);
             if(n.val < node.val){
                 return n;
@@ -108,10 +112,12 @@ class BST {
             }
         }
         else{
+            //Check left subtree
             return findMaxRec(node.left);
         }
     }
     public static Node findPrevRecHelper(Node node, int val){
+        //Continue Traversing until finds first instance of parent < node
         if(node != null && node.val < val){
             return node;
         }
@@ -121,10 +127,7 @@ class BST {
         return node;
     }
     public static Node findMinRec(Node root){
-//            while(root.left != null){
-//                root = root.left;
-//            }
-//            return root;
+        //Keep Traversing to the left most Node
         if(root.left != null){
             return findMinRec(root.left);
         }
@@ -133,6 +136,7 @@ class BST {
         }
     }
     public static Node findMaxRec(Node root){
+        //Keep traversing to the right most Node
         if(root.right != null){
             return findMaxRec(root.right);
         }
@@ -178,11 +182,13 @@ class BST {
         Queue<Node> queue = new LinkedList<Node>();
         queue.add(root);
         Node prev = null;
+        //prev Node used to keep track of the parent node
         while(queue.size() != 0){
             int n = queue.size();
             for(int i = 0; i < n; i++){
                 Node curr = queue.remove();
                 if(curr.val == val){
+                    //First Case
                     if(curr.left == null && curr.right == null){
                         if(prev != null){
                             if(prev.val < curr.val){
@@ -193,6 +199,7 @@ class BST {
                             }
                         }
                     }
+                    //Second Case
                     else if(curr.left == null){
                         if(prev.val < curr.val) {
                             prev.right = curr.right;
@@ -211,6 +218,7 @@ class BST {
                         }
                         curr.left.parent = prev;
                     }
+                    //Third Case
                     else{
                         Node temp = findNextIter(curr);
                         curr.val = temp.val;
@@ -234,6 +242,7 @@ class BST {
     public static Node findNextIter(Node node){
         if(node.right == null){
             Node curr = node;
+            //Traverse the parents
             while(curr.val <= node.val && curr.parent != null){
                 curr = curr.parent;
             }
@@ -243,12 +252,14 @@ class BST {
             return curr;
         }
         else{
+            //Find smallest in subtree
             return findMinIter(node.right);
         }
     }
     public static Node findPrevIter(Node node){
         if(node.left == null){
             Node curr = node;
+            //Traverse the parents
             while(curr.val >= node.val && curr.parent != null){
                 curr = curr.parent;
             }
@@ -258,16 +269,19 @@ class BST {
             return curr;
         }
         else{
+            //Finds the Max of the left subtree
             return findMaxIter(node.left);
         }
     }
     public static Node findMinIter(Node node){
+        //Keep traversing until left most node is found
         while(node.left != null){
             node = node.left;
         }
         return node;
     }
     public static Node findMaxIter(Node node){
+        //keep traversing until right most node is found
         while(node.right != null){
             node = node.right;
         }
@@ -277,12 +291,21 @@ class BST {
     //QUESTION 2: SORT
     int[] sort(Node root){
         List<Integer> list = new ArrayList<>();
+        //does an inOrder traversal
         inOrder(root, list);
         int[] a = new int[list.size()];
         for(int i = 0; i < list.size(); i++){
             a[i] = list.get(i);
         }
         return a;
+    }
+    public static void inOrder(Node root, List<Integer> list){
+        //traverses inOrder and adds to list
+        if(root != null) {
+            inOrder(root.left, list);
+            list.add(root.val);
+            inOrder(root.right, list);
+        }
     }
 
     //QUESTION 3A
@@ -323,13 +346,7 @@ class BST {
         }
         return tree;
     }
-    public static void inOrder(Node root, List<Integer> list){
-        if(root != null) {
-            inOrder(root.left, list);
-            list.add(root.val);
-            inOrder(root.right, list);
-        }
-    }
+
     StringBuilder print(){
         StringBuilder s = new StringBuilder();
         inOrderPrint(this.root, s);
