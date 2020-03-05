@@ -136,6 +136,7 @@ class AVL {
     }
     public Node deleteIter(int val){
         if(root == null){
+            maxTraversed = 1;
             return null;
         }
         Queue<Node> queue = new LinkedList<Node>();
@@ -144,7 +145,7 @@ class AVL {
         //prev Node used to keep track of the parent node
         Stack<Node> stack = new Stack<Node>();
         Node save = root;
-        int count = 0;
+        int count = 1;
         while(queue.size() != 0){
             System.out.println(count);
             int n = queue.size();
