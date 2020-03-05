@@ -423,8 +423,8 @@ class AVL {
         int a = largeRandomArray.length;
         AVL avlIter = new AVL();
         BST bstRec = new BST();
-
         long bavl1 = System.nanoTime();
+        //Iterative 100000 AVL Random
         for(int i = 0; i < a; i++){
             avlIter.insertIter(largeRandomArray[i]);
         }
@@ -438,9 +438,12 @@ class AVL {
         }
         long abstRec1 = System.nanoTime();
         long diff2 = (abstRec1 - bbstRec1);
+        //Recursive 100000 BST Random
         System.out.println("Recusive 100000 BST Random Max Traversal Time: " +  diff2 + " nanoseconds" );
 
-//        //5B
+
+
+//        //5b
         int[] smallRandomArray = getRandomArray(10);
         int b = smallRandomArray.length;
         AVL avlSmall = new AVL();
@@ -451,6 +454,7 @@ class AVL {
         }
         long aavlSmall = System.nanoTime();
         long nanoseconds = (aavlSmall - bavlSmall);
+        //Iterative Small AVL
         System.out.println("Iterative Small AVL Random Max Traversal Time: " +  nanoseconds + " nanoseconds" );
         long bbstSmall = System.nanoTime();
 
@@ -459,9 +463,13 @@ class AVL {
         }
         long abstSmall = System.nanoTime();
         long nanoseconds1 = (abstSmall - bbstSmall);
+        //Recursive Small BST
         System.out.println("Recursive Small BST Random Max Traversal Time: " +  nanoseconds1 + " nanoseconds" );
-//
-//        //5c
+        //The recursive small BST is faster than the iterative AVL
+
+
+//       6a
+        //Random Array - Iterative AVL and BST
         BST bstIter = new BST();
         AVL avlIter2 = new AVL();
         long beforeIter2 = System.nanoTime();
@@ -471,6 +479,7 @@ class AVL {
         long afterIter2 = System.nanoTime();
         long duration = (afterIter2 - beforeIter2);
         long time_sec = TimeUnit.NANOSECONDS.toSeconds(duration);
+        //Iterative AVL Random
         System.out.println("Iterative AVL Random Max Traversal: " + avlIter2.maxTraversed + "   Time: " + time_sec + " seconds" );
 
         long beforeBSTIter = System.nanoTime();
@@ -480,10 +489,10 @@ class AVL {
         long afterBSTIter = System.nanoTime();
         long duration2 = (afterBSTIter - beforeBSTIter);
         long time_sec2 = TimeUnit.NANOSECONDS.toSeconds(duration2);
-//        //6a
         System.out.println("Iterative BST Random Max Traversal: " + bstIter.maxTraversed + "    Time: " + time_sec2 + " seconds");
 
-
+        //6b
+        //Sorted Array - Iterative AVL and BST
         int[] sortedArray = getSortedArray(100000);
         int c = sortedArray.length;
         AVL avlSorted = new AVL();
@@ -491,12 +500,10 @@ class AVL {
         long beforeAVLSorted = System.nanoTime();
         for(int i = 0; i < c; i++){
             avlSorted.insertIter(sortedArray[i]);
-
         }
         long afterAVLSorted = System.nanoTime();
         long time_sec3 = TimeUnit.NANOSECONDS.toSeconds(afterAVLSorted - beforeAVLSorted);
         System.out.println("Iterative AVL Sorted Max Traversal: " + avlSorted.maxTraversed + "  Time: " + time_sec3 + " seconds");
-
         long beforeBSTSorted = System.nanoTime();
         for(int i = 0; i < c; i++){
             bstSorted.insertIter(sortedArray[i]);
@@ -504,6 +511,6 @@ class AVL {
         long afterBSTSorted = System.nanoTime();
         long time_sec4 = TimeUnit.NANOSECONDS.toSeconds(afterBSTSorted - beforeBSTSorted);
         System.out.println("Iterative BST Sorted Max Traversal: " + bstSorted.maxTraversed + "  Time: " + time_sec4 + " seconds");
-        ////9999 levels are traversed because nodes are become a linked list when inserted into bst
+        //100000 levels are traversed because nodes are become a linked list when inserted into bst
     }
 }
