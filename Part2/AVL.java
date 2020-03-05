@@ -418,7 +418,7 @@ class AVL {
 //        System.out.println(avl.findNextIter(avl.root.right.right.left).val);
         //5A
 
-
+        System.out.println("5a for 100000 Random");
         int[] largeRandomArray = getRandomArray(1000000);
         int a = largeRandomArray.length;
         AVL avlIter = new AVL();
@@ -444,6 +444,7 @@ class AVL {
 
 
 //        //5b
+        System.out.println("5b for 10 random");
         int[] smallRandomArray = getRandomArray(10);
         int b = smallRandomArray.length;
         AVL avlSmall = new AVL();
@@ -470,6 +471,7 @@ class AVL {
 
 //       6a
         //Random Array - Iterative AVL and BST
+        System.out.println("6a Random Array - Iterative AVL and BST");
         BST bstIter = new BST();
         AVL avlIter2 = new AVL();
         long beforeIter2 = System.nanoTime();
@@ -493,6 +495,7 @@ class AVL {
 
         //6b
         //Sorted Array - Iterative AVL and BST
+        System.out.println("6b Sorted Array - Iterative AVL and BST");
         int[] sortedArray = getSortedArray(100000);
         int c = sortedArray.length;
         AVL avlSorted = new AVL();
